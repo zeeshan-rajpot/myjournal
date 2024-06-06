@@ -117,6 +117,24 @@ const Sidebar = (props) => {
               </Link>
             </li>
             <li>
+              <Link
+                to="/checkin"
+                className={`flex items-center  py-1 rounded-2xl  ${
+                  activeTab === "user" ? "active-tabbbb" : "text-trueGray"
+                }`}
+                onClick={() => handleTabClick("user")}
+              >
+                <img
+                  src="Frame 68027.svg"
+                  alt="checkin_Icon"
+                  className="w-8 ms-4"
+                />
+                <span className="ms-3 text-xl lg:text-xl font-normal ">
+                  Check-In
+                </span>
+              </Link>
+            </li>
+            <li>
               <button
                 type="button"
                 className={`flex items-center w-full p-2 text-base transition duration-75 rounded-2xl group 

@@ -58,7 +58,7 @@ const Users = () => {
       <div className="col-span-2 lg:col-span-2  ">
         <Sidebar actTab="DashBoard" />
       </div>
-      <div className="col-span-8 lg:col-span-8 bg-theme p-8">
+      <div className="col-span-8 lg:col-span-8 bg-theme p-8 xl:h-screen">
         <Breadcrumb name="users" />
         <section className=" p-3 sm:p-5">
           <div className="mx-auto max-w-screen-xl">
