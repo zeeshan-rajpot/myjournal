@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import Header from "./Header";
 import Sidebar from "../../Compunents/SideBar";
 import Breadcrumb from "../../Compunents/Breadcrumb";
-import EmotionGrid from "./FirstScreen";
 import TabContent from "./TabContent";
 
 const CheckIn = () => {
