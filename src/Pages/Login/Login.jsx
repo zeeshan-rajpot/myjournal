@@ -1,7 +1,9 @@
 import React ,{useState} from "react";
 import { Link } from "react-router-dom";
+
 import './login.css'
 import ForgetModal from "./ForgetModal";
+
 
 const Login = () => {
 
@@ -34,10 +36,12 @@ const Login = () => {
             className="space-y-4 md:space-y-6  w-9/12 md:w-6/12 mt-12"
             action="#"
           >
+
                <div className="input-container shadow  rounded-3xl  bg-[#fafafa]">
               {/* <FaUser className='icon' /> */}
               <img src= "/Frame 33.png" className="w-6"/>
               <input type="text" name='email'  placeholder="Email" className="bg-[#fafafa] " />
+
             </div>
 
             <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
@@ -50,9 +54,7 @@ const Login = () => {
                 <div className="flex items-center h-5">
                   
                 </div>
-                <div className="ml-3 text-sm">
-                
-                </div>
+                <div className="ml-3 text-sm"></div>
               </div>
               <button
                onClick={toggleModal}
