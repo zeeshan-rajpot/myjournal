@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './login.css'
+import "./login.css";
 
 const Login = () => {
   return (
@@ -20,10 +20,15 @@ const Login = () => {
             className="space-y-4 md:space-y-6  w-9/12 md:w-6/12 mt-12"
             action="#"
           >
-               <div className="input-container shadow bg-light ">
+            <div className="input-container shadow bg-light ">
               {/* <FaUser className='icon' /> */}
-              <img src= "/Iconly-Bold-Message.svg" />
-              <input type="text" name='email'  placeholder="Email" className="bg-light" />
+              <img src="/Iconly-Bold-Message.svg" />
+              <input
+                type="text"
+                name="email"
+                placeholder="Email"
+                className="bg-light"
+              />
             </div>
             <div>
               <label
@@ -52,9 +57,7 @@ const Login = () => {
                     required=""
                   />
                 </div>
-                <div className="ml-3 text-sm">
-                
-                </div>
+                <div className="ml-3 text-sm"></div>
               </div>
               <Link
                 to="/forgetPassword"

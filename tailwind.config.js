@@ -10,7 +10,8 @@ export default {
       colors: {
         login: "#000",
         lightBlue: "#3D9BD6",
-        trueGray:"#AAACAE"
+        trueGray:"#AAACAE",
+        theme: "#FEF2CA",
       },
     },
   },

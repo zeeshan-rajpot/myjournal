@@ -89,12 +89,12 @@ const Sidebar = (props) => {
                 onClick={() => handleTabClick("DashBoard")}
               >
                 <img
-                  src="ic_round-dashboard.svg"
+                  src="Frame 68026.svg"
                   alt="user_Icon"
                   className="w-8 ms-4"
                 />
                 <span className="ms-3  text-xl lg:text-xl font-normal ">
-                DashBoard
+                  DashBoard
                 </span>
               </Link>
             </li>
@@ -107,7 +107,7 @@ const Sidebar = (props) => {
                 onClick={() => handleTabClick("user")}
               >
                 <img
-                  src="solar_user-bold.svg"
+                  src="solar_user-broken.svg"
                   alt="user_Icon"
                   className="w-8 ms-4"
                 />
