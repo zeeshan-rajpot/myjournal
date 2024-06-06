@@ -1,8 +1,22 @@
-import React from "react";
+import React ,{useState} from "react";
 import { Link } from "react-router-dom";
 import './login.css'
+import ForgetModal from "./ForgetModal";
 
 const Login = () => {
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => {
+          console.log('Toggle modal');
+      setIsModalOpen(!isModalOpen);
+    };
+
+
+
+
+
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 ">
@@ -20,48 +34,32 @@ const Login = () => {
             className="space-y-4 md:space-y-6  w-9/12 md:w-6/12 mt-12"
             action="#"
           >
-               <div className="input-container shadow bg-light ">
+               <div className="input-container shadow  rounded-3xl  bg-[#fafafa]">
               {/* <FaUser className='icon' /> */}
-              <img src= "/Iconly-Bold-Message.svg" />
-              <input type="text" name='email'  placeholder="Email" className="bg-light" />
+              <img src= "/Frame 33.png" className="w-6"/>
+              <input type="text" name='email'  placeholder="Email" className="bg-[#fafafa] " />
             </div>
-            <div>
-              <label
-                for="password"
-                className="block mb-2 text-sm font-normal text-login ml-4"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-3xl focus:ring-primary-600 focus:border-primary-600 block p-2.5 w-full"
-                required=""
-              />
+
+            <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
+              {/* <FaUser className='icon' /> */}
+              <img src= "/Frame 34.png" className="w-6"/>
+              <input type="password" name='password'  placeholder="Password" className="bg-[#fafafa] " />
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-start">
                 <div className="flex items-center h-5">
-                  <input
-                    id="remember"
-                    aria-describedby="remember"
-                    type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
-                    required=""
-                  />
+                  
                 </div>
                 <div className="ml-3 text-sm">
                 
                 </div>
               </div>
-              <Link
-                to="/forgetPassword"
+              <button
+               onClick={toggleModal}
                 className="text-sm font-normal text-login hover:underline "
               >
                 Forgot password?
-              </Link>
+              </button>
             </div>
             <div>
               <Link to="/DashBoard">
@@ -76,6 +74,22 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+      {isModalOpen && (
+       <ForgetModal toggle={toggleModal}/>
+      )}
+
+
+
     </>
   );
 };
