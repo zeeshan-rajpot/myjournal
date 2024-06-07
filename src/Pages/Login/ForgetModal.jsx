@@ -1,11 +1,52 @@
-// ForgetModal.jsx
 import React, { useState } from 'react';
-
+import { authApi } from '../../api';
 
 
 
 
 const ForgetModal = ({ toggle }) => {
+
+    const [email, setEmail] = useState('');
+
+
+
+
+    const handleLogin = async (e) => {
+        // e.preventDefault();
+      
+
+        try {
+       
+            const userData = await authApi.forgetPassword({email});
+            console.log('User data:', userData);
+            setShowNext(true);
+        } catch (err) {
+            // setError(err.message);
+            console.log( err);
+      
+            
+        } finally {
+            // setLoading(false);
+        }
+    };
+
+
+
+
+
+    const [showNext, setShowNext] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+  
+    const handleNext = () => {
+
+      handleLogin()
+    };
+  
+    const handleConfirm = () => {
+      setShowConfirm(true);
+    };
+  
+  
 
     return (
 
@@ -34,33 +75,92 @@ const ForgetModal = ({ toggle }) => {
                             </svg>
                         </button>
                     </div>
-                    <div className="p-6 pt-1 space-y-4 text-center">
-                        <h3 className='text-xl md:text-2xl font-semibold'>Reset Your Password</h3>
-                        <p className="text-sm text-gray-500">
-                            Enter your email address and we will send you a link to reset your password.
-                        </p>
-                        <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
 
-                            <img src="/Frame 33.png" className="w-6" />
-                            <input type="email" name='email' placeholder="Email" className="bg-[#fafafa] " />
+                    {!showNext && !showConfirm ? (
+                        <div className="p-6 pt-1 space-y-4 text-center">
+                            <h3 className='text-xl md:text-2xl font-semibold'>Reset Your Password</h3>
+                            <p className="text-sm text-gray-500">
+                                Enter your email address and we will send you a link to reset your password.
+                            </p>
+                            <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
+
+                                <img src="/Frame 33.png" className="w-6" />
+                                <input 
+                                 type="email"
+                                value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                                name='email' 
+                                placeholder="Email"
+                                 className="bg-[#fafafa] " />
+                            </div>
+                            <button
+                                onClick={handleLogin}
+                                type="submit"
+                                className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
+                            >
+                                Next
+                            </button>
                         </div>
-                        <button
-                            type="submit"
-                            className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
-                        >
-                            Next
-                        </button>
-                    </div>
+        ) : showNext && !showConfirm ? (
+                        <>
+                           <div className="p-6 pt-1 space-y-4 text-center">
+                            <h3 className='text-xl md:text-2xl font-semibold'>Enter the code</h3>
+                            <p className="text-sm text-gray-500">
+                            We have just sent you a 4-digit code to 
+                            </p>
+                            <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
 
+                                <img src="/Frame 33.png" className="w-6" />
+                                <input type="number" name='email' placeholder="OTP" className="bg-[#fafafa] " />
+                            </div>
+                            <button
+                                onClick={handleConfirm}
+                                type="submit"
+                                className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
+                            >
+                                Next
+                            </button>
+                        </div>
+                        </>
 
+                    ):(
+                        <>
+                        <div className="p-6 pt-1 space-y-4 text-center">
+                         <h3 className='text-xl md:text-2xl font-semibold'>Create a new password</h3>
+                         <p className="text-sm text-gray-500">
+                         Your new password must be different from previous used passwords.
+                         </p>
+                         <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
+
+                             <img src="/Frame 33.png" className="w-6" />
+                             <input type="email" name='email' placeholder="Email" className="bg-[#fafafa] " />
+                         </div>
+                         <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
+
+<img src="/Frame 33.png" className="w-6" />
+<input type="email" name='email' placeholder="Email" className="bg-[#fafafa] " />
+</div>
+                         <button
+                             onClick={handleNext}
+                             type="submit"
+                             className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
+                         >
+                             Next
+                         </button>
+                     </div>
+                     </>
+
+                    )
                     
+                    
+                    }
 
 
 
 
-                    another data here 
+
                 </div>
-                
+
 
             </div>
 
