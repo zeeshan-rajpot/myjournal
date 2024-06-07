@@ -2,31 +2,27 @@ import { React, useState } from "react";
 import EmotionCard from "../../Compunents/EmotionCard";
 import ModalComponent from "../../Compunents/ModalComponent";
 
-const emotions = [
-  { img: "/Happy.svg", title: "Happy" },
-  { img: "/Blessed.svg", title: "Blessed" },
-  { img: "/Good.svg", title: "Good" },
-  { img: "/Confused.svg", title: "Confused" },
-  { img: "/Lucky.svg", title: "Lucky" },
-  { img: "/Bored.svg", title: "Bored" },
-  { img: "/Awkard.svg", title: "Awkard" },
-  { img: "/Good.svg", title: "Good" },
-  { img: "/Anxious.svg", title: "Anxious" },
-  { img: "/Down.svg", title: "Down" },
-  { img: "/Stressed.svg", title: "Stressed" },
-];
+const Motivation = () => {
 
-function ThirdScreen() {
+  const emotions = [
+    { img: "/pana.svg", title: "After monitoring coffee" },
+    { img: "/driving.svg", title: "While commuting" },
+    { img: "/amico.svg", title: "During my lunch break" },
+    { img: "/sleep.svg", title: "Before going to sleep" },
+    { img: "/free.svg", title: "Any spare time " },
+    { img: "/Asset 114.svg", title: "Self employee" },
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   return (
     <>
-      <div className="my-2">
+       <div className="my-2">
         <div className="flex justify-between border-b border-[#181919] w-[95%] m-auto">
           <div className="flex flex-col sm:flex-row space-x-2 items-center ">
-            <h1 className="text-xl font-bold ">How did you feel about this?</h1>
+            <h1 className="text-xl font-bold ">When do you like to find most motivation? </h1>
             <button className="flex text-blue-500  ">
               <img src="mynaui_edit-one.svg" alt="edit" />
               <span>Edit</span>
@@ -48,7 +44,7 @@ function ThirdScreen() {
         <ModalComponent handleclick={openModal} handleClose={closeModal} />
       )}
     </>
-  );
+  )
 }
 
-export default ThirdScreen;
+export default Motivation

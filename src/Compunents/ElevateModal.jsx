@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import "./modal.css";
 
-const ModalComponent = ({ handleclick, handleClose }) => {
+const ElevateModal = ({ handleclick, handleClose }) => {
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState(null);
-
-  const handleImageUpload = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
-  };
+ 
 
   const handleSave = () => {
     // Handle save logic here
@@ -19,33 +15,6 @@ const ModalComponent = ({ handleclick, handleClose }) => {
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-3xl p-6 w-full max-w-lg mx-4 md:mx-0">
           <div className="flex flex-col items-center">
-            <label className="cursor-pointer">
-              <input
-                type="file"
-                className="hidden"
-                onChange={handleImageUpload}
-              />
-              <div className="w-72 sm:w-[28rem] h-64 sm:h-96 border-2 border-gray-700 rounded-2xl flex items-center justify-center">
-                {image ? (
-                  <img
-                    src={image}
-                    alt="Uploaded"
-                    className="w-full h-full object-contain rounded-2xl"
-                  />
-                ) : (
-                  <>
-                    <div>
-                      <img
-                        src="upload.png"
-                        alt="upload_icon"
-                        className="w-12 m-auto my-2"
-                      />
-                      <p>Upload Image</p>
-                    </div>
-                  </>
-                )}
-              </div>
-            </label>
             <div className="mt-4">
               <label className="ms-3">Add Title Name</label>
               <input
@@ -77,4 +46,4 @@ const ModalComponent = ({ handleclick, handleClose }) => {
   );
 };
 
-export default ModalComponent;
+export default ElevateModal;
