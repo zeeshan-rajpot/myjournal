@@ -112,14 +112,14 @@ const Login = () => {
 
             {loading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
-              {/* <Link to="/DashBoard"> */}
+              <Link to="/DashBoard">
                 <button
                 type="submit"
                   className="w-full text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
                 >
                   Login
                 </button>
-              {/* </Link> */}
+              </Link>
             </div>
           </form>
         </div>
