@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { authApi } from '../../api';
 
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const ForgetModal = ({ toggle }) => {
@@ -11,25 +11,21 @@ const ForgetModal = ({ toggle }) => {
 
 
 
-    const handleLogin = async (e) => {
-        // e.preventDefault();
-      
-
+    const handleForget = async (e) => {
+        // e.preventDefault(); 
         try {
-       
-            const userData = await authApi.forgetPassword({email});
-            console.log('User data:', userData);
-            setShowNext(true);
+            const userData = await authApi.forgetPassword({ email });
+            console.log(userData);
+            if (userData.result === true) {
+                setShowNext(true);
+                toast.success('Password reset instructions sent to your email.');
+            } else {
+                toast.error(userData.message || 'Unexpected response from server.');
+            }
         } catch (err) {
-            // setError(err.message);
-            console.log( err);
-      
-            
-        } finally {
-            // setLoading(false);
+            toast.error(err.message || 'An error occurred. Please try again.');
         }
     };
-
 
 
 
@@ -39,7 +35,7 @@ const ForgetModal = ({ toggle }) => {
   
     const handleNext = () => {
 
-      handleLogin()
+        handleForget()
     };
   
     const handleConfirm = () => {
@@ -53,6 +49,8 @@ const ForgetModal = ({ toggle }) => {
 
 
         <>
+
+<Toaster />
             <div
                 id="default-modal"
                 aria-hidden="true"
@@ -94,7 +92,7 @@ const ForgetModal = ({ toggle }) => {
                                  className="bg-[#fafafa] " />
                             </div>
                             <button
-                                onClick={handleLogin}
+                                onClick={handleNext}
                                 type="submit"
                                 className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
                             >
