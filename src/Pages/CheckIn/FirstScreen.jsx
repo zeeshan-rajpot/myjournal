@@ -23,7 +23,7 @@ function FirstScreen() {
       <div className="my-2">
         <div className="flex justify-between border-b border-[#181919] w-[95%] m-auto">
           <div className="flex flex-col sm:flex-row space-x-2 items-center ">
-            <h1 className="text-xl font-bold ">How was your day?</h1>
+            <h1 className="text-xl font-bold" contenteditable="true">How was your day?</h1>
             <button className="flex text-blue-500  ">
               <img src="mynaui_edit-one.svg" alt="edit" />
               <span>Edit</span>
@@ -44,7 +44,7 @@ function FirstScreen() {
       {isOpen && (
         <ModalComponent handleclick={openModal} handleClose={closeModal} />
       )}
-      ;
+      
     </>
   );
 }

@@ -1,18 +1,20 @@
+// File: Sidebar.jsx
+
 import { React, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import clsx from "clsx";
 import "./sidebar.css";
 
 const Sidebar = (props) => {
   const [activeTab, setActiveTab] = useState(props.actTab);
-  console.log(activeTab);
   const [isOpen, setIsOpen] = useState(false);
   const [isbtnOpen, setIsbtnOpen] = useState(false);
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const toggleDropDown = () => {
     setIsbtnOpen(!isbtnOpen);
     setIsDropdownOpen(!isDropdownOpen);
@@ -31,7 +33,6 @@ const Sidebar = (props) => {
             className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 w-[94px] "
           />
           <img
-            // src="/Logo.png"
             alt=""
             className="inline-flex items-center p-2 mt-2  w-[74px] "
           />
@@ -66,12 +67,17 @@ const Sidebar = (props) => {
 
       <aside
         id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-[17rem] 2xl:w-80 h-screen transition-transform bg-white ${
-          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        }`}
+        className={clsx(
+          "fixed top-0 left-0 z-40 w-[17rem] 2xl:w-80 h-screen transition-transform",
+          {
+            "translate-x-0": isOpen,
+            "-translate-x-full lg:translate-x-0": !isOpen,
+          },
+          "bg-[#181919]"
+        )}
         aria-label="Sidebar"
       >
-        <div className="h-screen md:h-[98vh] px-3 py-4  overflow-y-auto bg-sidebar md:m-3 md:rounded-3xl">
+        <div className="h-screen md:h-[98vh] px-3 py-4 overflow-y-auto md:m-3 md:rounded-3xl ">
           <div className="flex justify-center items-center mb-4">
             <img
               src="/Logo.png"
@@ -79,144 +85,134 @@ const Sidebar = (props) => {
               className="w-32 md:w-40"
             />
           </div>
-          <ul className="space-y-3 font-medium flex flex-col  w-[90%] m-auto">
+          <ul className="space-y-3 font-medium flex flex-col w-[90%] m-auto mt-24">
             <li>
-              <Link
+              <NavLink
                 to="/DashBoard"
-                className={`flex items-center  py-1 rounded-2xl  ${
-                  activeTab === "DashBoard" ? "active-tabbbb" : "text-trueGray"
-                }`}
-                onClick={() => handleTabClick("DashBoard")}
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-[#181919]": isActive,
+                    }
+                  )
+                }
               >
                 <img
                   src="Frame 68026.svg"
-                  alt="user_Icon"
+                  alt="dashboard_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3  text-xl lg:text-xl font-normal ">
+                <span className="ms-3 text-xl lg:text-xl font-normal">
                   DashBoard
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/users"
-                className={`flex items-center  py-1 rounded-2xl  ${
-                  activeTab === "user" ? "active-tabbbb" : "text-trueGray"
-                }`}
-                onClick={() => handleTabClick("user")}
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-gray-800": isActive,
+                    }
+                  )
+                }
               >
                 <img
                   src="solar_user-broken.svg"
-                  alt="user_Icon"
+                  alt="user_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal ">
+                <span className="ms-3 text-xl lg:text-xl font-normal">
                   Users
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/checkin"
-                className={`flex items-center  py-1 rounded-2xl  ${
-                  activeTab === "user" ? "active-tabbbb" : "text-trueGray"
-                }`}
-                onClick={() => handleTabClick("user")}
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-gray-800": isActive,
+                    }
+                  )
+                }
               >
                 <img
                   src="Frame 68027.svg"
-                  alt="checkin_Icon"
+                  alt="checkin_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal ">
+                <span className="ms-3 text-xl lg:text-xl font-normal">
                   Check-In
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <button
-                type="button"
-                className={`flex items-center w-full p-2 text-base transition duration-75 rounded-2xl group 
-                ${activeTab === "Driver" ? "active-tabbbb" : "text-trueGray"}`}
-                onClick={() => {
-                  handleTabClick("Driver");
-                  toggleDropDown();
-                }}
+              <NavLink
+                to="/infoFoam"
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-gray-800": isActive,
+                    }
+                  )
+                }
               >
-                <img src="/handle.svg" alt="user_Icon" className="w-7 ms-3" />
-                <span className="flex-1 text-xl lg:text-xl font-normal ms-3 text-left rtl:text-right whitespace-nowrap">
-                  Driver
+                <img src="infoIcon.svg" alt="info_icon" className="w-8 ms-4" />
+                <span className="ms-3 text-xl lg:text-xl font-normal">
+                  Info Foam
                 </span>
-                <svg
-                  className={`w-3 h-3 transform transition-transform ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 4 4 4-4"
-                  />
-                </svg>
-              </button>
-              {isbtnOpen && (
-                <ul className="py-2 space-y-2">
-                  <li>
-                    <Link
-                      to="/approve"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group "
-                    >
-                      Approve
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/pending"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group "
-                    >
-                      Pending
-                    </Link>
-                  </li>
-                </ul>
-              )}
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/rates"
-                className={`flex items-center  py-1 rounded-2xl  ${
-                  activeTab === "rates" ? "active-tabbbb" : "text-trueGray"
-                }`}
-                onClick={() => handleTabClick("rates")}
+              <NavLink
+                to="/pricing"
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-gray-800": isActive,
+                    }
+                  )
+                }
               >
                 <img
-                  src="ph_coins-fill.svg"
-                  alt="coin_Icon"
+                  src="grommet-icons_money.svg"
+                  alt="money_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal ">
-                  Ride Rates
+                <span className="ms-3 text-xl lg:text-xl font-normal">
+                  Pricing
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
-                to="/rates"
-                className={`flex items-center  py-1 rounded-2xl  ${
-                  activeTab === "rates" ? "active-tabbbb" : "text-trueGray"
-                }`}
-                onClick={() => handleTabClick("rates")}
+              <NavLink
+                to="/logout"
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    {
+                      "text-white bg-gray-800": isActive,
+                    }
+                  )
+                }
               >
-                <img src="Capa_1.svg" alt="coin_Icon" className="w-8 ms-4" />
-                <span className="ms-3 text-xl lg:text-xl font-normal ">
-                  Restaurant
+                <img
+                  src="logout.svg"
+                  alt="logout_icon"
+                  className="w-8 ms-4"
+                />
+                <span className="ms-3 text-xl lg:text-xl font-normal">
+                  Logout
                 </span>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
