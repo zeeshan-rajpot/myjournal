@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { authApi } from "../../api";
 import { Link } from "react-router-dom";
-
+import { ClipLoader } from "react-spinners";
 import "./login.css";
 import ForgetModal from "./ForgetModal";
 
@@ -22,7 +23,7 @@ const Login = () => {
     try {
       const userData = await authApi.login(credentials);
       console.log("User data:", userData);
-      // Handle successful login (e.g., save token, redirect)
+      
     } catch (err) {
       setError(err.message);
       console.log(err);
