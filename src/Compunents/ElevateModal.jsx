@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import "./modal.css";
+import { toast } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
-const ElevateModal = ({ handleclick, handleClose }) => {
+const ElevateModal = ({ handleclick, handleClose, createEntry, refresh }) => {
   const [title, setTitle] = useState("");
- 
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
 
-  const handleSave = () => {
-    // Handle save logic here
-    handleClose();
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    try {
+      setLoading(true);
+      const userData = await createEntry({title});
+      toast.success("Entry created successfully!");
+      handleClose();
+      refresh();
+      console.log(userData);
+    } catch (error) {
+      toast.error("Failed to create entry. Please try again.");
+      console.error("Error creating entry:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

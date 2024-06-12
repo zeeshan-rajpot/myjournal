@@ -1,7 +1,5 @@
-// File: Sidebar.jsx
-
 import { React, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import "./sidebar.css";
 
@@ -91,7 +89,7 @@ const Sidebar = (props) => {
                 to="/DashBoard"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
                       "text-white bg-[#181919]": isActive,
                     }
@@ -103,9 +101,7 @@ const Sidebar = (props) => {
                   alt="dashboard_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  DashBoard
-                </span>
+                <span className="ms-3 text-lg font-normal">Dashboard</span>
               </NavLink>
             </li>
             <li>
@@ -113,9 +109,9 @@ const Sidebar = (props) => {
                 to="/users"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
-                      "text-white bg-gray-800": isActive,
+                      "text-white bg-[#181919]": isActive,
                     }
                   )
                 }
@@ -125,9 +121,7 @@ const Sidebar = (props) => {
                   alt="user_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  Users
-                </span>
+                <span className="ms-3 text-lg font-normal">Users</span>
               </NavLink>
             </li>
             <li>
@@ -135,9 +129,9 @@ const Sidebar = (props) => {
                 to="/checkin"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
-                      "text-white bg-gray-800": isActive,
+                      "text-white bg-[#181919]": isActive,
                     }
                   )
                 }
@@ -147,9 +141,7 @@ const Sidebar = (props) => {
                   alt="checkin_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  Check-In
-                </span>
+                <span className="ms-3 text-lg font-normal">Check-In</span>
               </NavLink>
             </li>
             <li>
@@ -157,17 +149,15 @@ const Sidebar = (props) => {
                 to="/infoFoam"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
-                      "text-white bg-gray-800": isActive,
+                      "text-white bg-[#181919]": isActive,
                     }
                   )
                 }
               >
                 <img src="infoIcon.svg" alt="info_icon" className="w-8 ms-4" />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  Info Foam
-                </span>
+                <span className="ms-3 text-lg font-normal">Info Foam</span>
               </NavLink>
             </li>
             <li>
@@ -175,9 +165,9 @@ const Sidebar = (props) => {
                 to="/pricing"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
-                      "text-white bg-gray-800": isActive,
+                      "text-white bg-[#181919]": isActive,
                     }
                   )
                 }
@@ -187,31 +177,23 @@ const Sidebar = (props) => {
                   alt="money_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  Pricing
-                </span>
+                <span className="ms-3 text-lg font-normal">Pricing</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/logout"
+                to="/"
                 className={({ isActive }) =>
                   clsx(
-                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white hover:bg-gray-700",
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-white ",
                     {
-                      "text-white bg-gray-800": isActive,
+                      "text-white bg-[#181919]": isActive,
                     }
                   )
                 }
               >
-                <img
-                  src="logout.svg"
-                  alt="logout_icon"
-                  className="w-8 ms-4"
-                />
-                <span className="ms-3 text-xl lg:text-xl font-normal">
-                  Logout
-                </span>
+                <img src="logout.svg" alt="logout_icon" className="w-8 ms-4" />
+                <span className="ms-3 text-lg font-normal">Logout</span>
               </NavLink>
             </li>
           </ul>

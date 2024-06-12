@@ -7,11 +7,11 @@ function TabContent({ activeTab }) {
   const renderContent = () => {
     switch (activeTab) {
       case "first":
-        return <FirstScreen title="First-screen Content" />;
+        return <FirstScreen />;
       case "second":
-        return <SecondScreen title="Second-screen Content" />;
+        return <SecondScreen />;
       case "third":
-        return <ThirdScreen title="Third-screen Content" />;
+        return <ThirdScreen />;
       default:
         return null;
     }

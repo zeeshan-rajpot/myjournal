@@ -1,0 +1,24 @@
+/* Add this CSS to your stylesheet */
+
+@keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, #f6f6f6 0%, #eaeaea 20%, #f6f6f6 40%, #f6f6f6 100%);
+    background-size: 1000px 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer-placeholder {
+    height: 20px;
+    border-radius: 4px;
+  }
+  

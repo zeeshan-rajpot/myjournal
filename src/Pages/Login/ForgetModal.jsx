@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { authApi } from '../../api';
-
 import toast, { Toaster } from 'react-hot-toast';
 
 
 const ForgetModal = ({ toggle }) => {
-
-    const [email, setEmail] = useState('');
-
-
-
+  const [email, setEmail] = useState("");
 
     const handleForget = async (e) => {
         // e.preventDefault(); 

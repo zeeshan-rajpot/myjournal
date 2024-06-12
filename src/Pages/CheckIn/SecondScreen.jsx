@@ -1,6 +1,9 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import EmotionCard from "../../Compunents/EmotionCard";
 import ModalComponent from "../../Compunents/ModalComponent";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { checkInApi } from "../../api";
 
 const emotions = [
   { img: "/Family.svg", title: "Family" },
@@ -21,6 +24,30 @@ function SecondScreen() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const [activitiesData, setActivitiesData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const getActivities = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await checkInApi.getActivities();
+      setActivitiesData(response.data);
+      console.log("Moods data:", response.data);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getActivities();
+  }, []);
+
   return (
     <>
       <div className="my-2">
@@ -39,15 +66,25 @@ function SecondScreen() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6  mt-8">
-        {emotions.map((emotion, index) => (
-          <EmotionCard key={index} img={emotion.img} title={emotion.title} />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <div key={index}>
+                <Skeleton height={200} />
+                <Skeleton count={1} />
+              </div>
+            ))
+          : activitiesData.map((activity, index) => (
+              <EmotionCard
+                key={index}
+                img={activity.path}
+                title={activity.title}
+              />
+            ))}
       </div>
       {isOpen && (
-        <ModalComponent handleclick={openModal} handleClose={closeModal} />
+        <ModalComponent handleclick={openModal} handleClose={closeModal}   createEntry={checkInApi.createActivity} refresh={getActivities} />
       )}
-      
     </>
   );
 }
