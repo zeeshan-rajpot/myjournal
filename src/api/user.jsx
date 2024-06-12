@@ -1,8 +1,8 @@
 import apiClient from '../utils/apiClient';
 
-const getUser = async (userId) => {
+const getAllUser = async () => {
     try {
-        const response = await apiClient.get(`/users/${userId}`);
+        const response = await apiClient.get(`user/getAll`);
         return response.data;
     } catch (error) {
         console.error("Error fetching user:", error);
@@ -21,6 +21,6 @@ const createUser = async (userData) => {
 };
 
 export default {
-    getUser,
+    getAllUser,
     createUser,
 };

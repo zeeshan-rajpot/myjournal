@@ -1,17 +1,49 @@
 import React, { useState } from "react";
-import "./modal.css";
+import { toast } from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
-const ModalComponent = ({ handleclick, handleClose }) => {
+const ModalComponent = ({ handleClose, createEntry, refresh }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
 
   const handleImageUpload = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    if (file) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
   };
 
-  const handleSave = () => {
-    // Handle save logic here
-    handleClose();
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!image) {
+      setError("No Image Found");
+      toast.error("Please upload an image.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("image", image);
+
+    try {
+      setLoading(true);
+      const userData = await createEntry(formData);
+      toast.success("Entry created successfully!");
+      handleClose();
+      refresh();
+      console.log(userData);
+    } catch (error) {
+      toast.error("Failed to create entry. Please try again.");
+      console.error("Error creating entry:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,9 +58,9 @@ const ModalComponent = ({ handleclick, handleClose }) => {
                 onChange={handleImageUpload}
               />
               <div className="w-72 sm:w-[28rem] h-64 sm:h-96 border-2 border-gray-700 rounded-2xl flex items-center justify-center">
-                {image ? (
+                {imagePreview ? (
                   <img
-                    src={image}
+                    src={imagePreview}
                     alt="Uploaded"
                     className="w-full h-full object-contain rounded-2xl"
                   />
@@ -61,7 +93,7 @@ const ModalComponent = ({ handleclick, handleClose }) => {
                 onClick={handleSave}
                 className="bg-black text-white w-full rounded-full mr-2 py-2"
               >
-                Save
+                {loading ? <ClipLoader size={23} color="#ffffff" /> : "Save"}
               </button>
               <button
                 onClick={handleClose}

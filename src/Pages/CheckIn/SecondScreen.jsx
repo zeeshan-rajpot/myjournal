@@ -83,7 +83,7 @@ function SecondScreen() {
             ))}
       </div>
       {isOpen && (
-        <ModalComponent handleclick={openModal} handleClose={closeModal} />
+        <ModalComponent handleclick={openModal} handleClose={closeModal}   createEntry={checkInApi.createActivity} refresh={getActivities} />
       )}
     </>
   );

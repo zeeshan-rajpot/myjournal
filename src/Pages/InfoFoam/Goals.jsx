@@ -65,7 +65,12 @@ const Goals = () => {
             ))}
       </div>
       {isOpen && (
-        <ModalComponent handleclick={openModal} handleClose={closeModal} />
+        <ModalComponent
+          handleclick={openModal}
+          handleClose={closeModal}
+          createEntry={infoApi.createGoals}
+          refresh={getGoals}
+        />
       )}
     </>
   );

@@ -4,6 +4,7 @@ const apiClient = axios.create({
     baseURL: 'https://my-journal-app.azurewebsites.net/api', 
     headers: {
         'Content-Type': 'application/json',
+        
     },
 });
 

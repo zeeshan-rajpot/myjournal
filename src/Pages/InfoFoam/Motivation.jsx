@@ -67,7 +67,12 @@ const Motivation = () => {
             ))}
       </div>
       {isOpen && (
-        <ModalComponent handleclick={openModal} handleClose={closeModal} />
+        <ModalComponent
+          handleclick={openModal}
+          handleClose={closeModal}
+          createEntry={infoApi.createMotivation}
+          refresh={getMotivation}
+        />
       )}
     </>
   );

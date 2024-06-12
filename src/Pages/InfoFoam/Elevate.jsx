@@ -40,7 +40,9 @@ const Elevate = () => {
       <div className="my-2">
         <div className="flex justify-between border-b border-[#181919] w-[95%] m-auto">
           <div className="flex flex-col sm:flex-row space-x-2 items-center">
-            <h1 className="text-xl font-bold">Choose area you’d like to elevate</h1>
+            <h1 className="text-xl font-bold">
+              Choose area you’d like to elevate
+            </h1>
             <button className="flex text-blue-500">
               <img src="mynaui_edit-one.svg" alt="edit" />
               <span>Edit</span>
@@ -54,20 +56,23 @@ const Elevate = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {loading ? (
-          Array.from({ length: 8 }).map((_, index) => (
-            <div key={index}>
-              <Skeleton height={200} />
-            </div>
-          ))
-        ) : (
-          elvateData.map((data, index) => (
-            <ElevateCard key={index} title={data.title} />
-          ))
-        )}
+        {loading
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <div key={index}>
+                <Skeleton height={200} />
+              </div>
+            ))
+          : elvateData.map((data, index) => (
+              <ElevateCard key={index} title={data.title} />
+            ))}
       </div>
       {isOpen && (
-        <ElevateModal handleclick={openModal} handleClose={closeModal} />
+        <ElevateModal
+          handleclick={openModal}
+          handleClose={closeModal}
+          createEntry={infoApi.createElevates}
+          refresh={getElevates}
+        />
       )}
     </>
   );

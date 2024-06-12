@@ -29,8 +29,46 @@ const getMotivation = async () => {
   }
 };
 
+const createGoals = async (formData) => {
+  try {
+    const response = await apiClient.post(`/goals/create`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const createElevates = async (title) => {
+  try {
+    const response = await apiClient.post(`/elevates/create`, title);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const createMotivation = async (formData) => {
+  try {
+    const response = await apiClient.post(`/motivations/create`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   getGoals,
   getElevates,
   getMotivation,
+  createGoals,
+  createElevates,
+  createMotivation,
 };

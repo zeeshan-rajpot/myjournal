@@ -4,17 +4,9 @@ import ModalComponent from "../../Compunents/ModalComponent";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { checkInApi } from "../../api";
+import { Toaster } from "react-hot-toast";
 
-const emotions = [
-  { img: "/angry.png", title: "Angry" },
-  { img: "/sad.png", title: "Sad" },
-  { img: "/wonderful.png", title: "Wonderful" },
-  { img: "/enjoyable.png", title: "Enjoyable" },
-  { img: "/busy.png", title: "Busy" },
-  { img: "/lazy.png", title: "Lazy" },
-];
-
-function FirstScreen() {
+const FirstScreen = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [moodsData, setMoodsData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -45,12 +37,11 @@ function FirstScreen() {
 
   return (
     <>
+      <Toaster />
       <div className="my-2">
         <div className="flex justify-between border-b border-[#181919] w-[95%] m-auto">
           <div className="flex flex-col sm:flex-row space-x-2 items-center ">
-            <h1 className="text-xl font-bold" contenteditable="true">
-              How was your day?
-            </h1>
+            <h1 className="text-xl font-bold">How was your day?</h1>
             <button className="flex text-blue-500">
               <img src="mynaui_edit-one.svg" alt="edit" />
               <span>Edit</span>
@@ -76,10 +67,14 @@ function FirstScreen() {
             ))}
       </div>
       {isOpen && (
-        <ModalComponent handleclick={openModal} handleClose={closeModal} />
+        <ModalComponent
+          handleClose={closeModal}
+          createEntry={checkInApi.createMood}
+          refresh={getMoods}
+        />
       )}
     </>
   );
-}
+};
 
 export default FirstScreen;
