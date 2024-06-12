@@ -1,6 +1,7 @@
-import { React, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import Sidebar from "../../Compunents/SideBar";
 import Breadcrumb from "../../Compunents/Breadcrumb";
+import { authApi, userApi } from '../../api';
 
 const Users = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(-1);
@@ -9,50 +10,82 @@ const Users = () => {
     setOpenDropdownIndex(index === openDropdownIndex ? -1 : index);
   };
 
-  const data = [
-    {
-      name: "Zeeshan Rana",
-      email: "Itsmohsinar@gmail.com",
-      plan: "Free",
-    },
-    {
-      name: "Zeeshan ",
-      email: "Itsmohsinar@gmail.com",
-      plan: "Free",
-    },
-    {
-      name: "Zeeshan Rana",
-      email: "Itsmohsinar@gmail.com",
-      plan: "Free",
-    },
-    {
-      name: "Zeeshan ",
-      email: "Itsmohsinar@gmail.com",
-      plan: "1 month",
-    },
-    {
-      name: "Zeeshan Rana",
-      email: "Itsmohsinar@gmail.com",
-      plan: "Free",
-    },
-    {
-      name: "Zeeshan ",
-      email: "Itsmohsinar@gmail.com",
-      plan: "1 month",
-    },
-    {
-      name: "Zeeshan Rana",
-      email: "Itsmohsinar@gmail.com",
-      plan: "3 month",
-    },
-    {
-      name: "Zeeshan ",
-      email: "Itsmohsinar@gmail.com",
-      plan: "1 month",
-    },
 
-    // Add more data objects as needed
-  ];
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+
+  const getUser = async () => {
+      try {
+          const userData = await userApi.getAllUser();
+          console.log('User data:', userData);
+          // Handle successful data fetching (e.g., save data to state)
+          setData(userData?.data)
+      } catch (err) {
+          setError(err.message);
+          console.log(err);
+      } finally {
+          setLoading(false);
+      }
+  };
+
+  useEffect(() => {
+      getUser();
+  }, []); // Empty dependency array means this runs once when the component mounts
+
+  if (loading) {
+      return <div>Loading...</div>;
+  }
+
+  if (error) {
+      return <div>Error: {error}</div>;
+  }
+
+
+  // const data = [
+  //   {
+  //     name: "Zeeshan Rana",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "Free",
+  //   },
+  //   {
+  //     name: "Zeeshan ",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "Free",
+  //   },
+  //   {
+  //     name: "Zeeshan Rana",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "Free",
+  //   },
+  //   {
+  //     name: "Zeeshan ",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "1 month",
+  //   },
+  //   {
+  //     name: "Zeeshan Rana",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "Free",
+  //   },
+  //   {
+  //     name: "Zeeshan ",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "1 month",
+  //   },
+  //   {
+  //     name: "Zeeshan Rana",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "3 month",
+  //   },
+  //   {
+  //     name: "Zeeshan ",
+  //     email: "Itsmohsinar@gmail.com",
+  //     plan: "1 month",
+  //   },
+
+  //   // Add more data objects as needed
+  // ];
   return (
     <div className="grid grid-cols-1 lg:grid-cols-10 ">
       <div className="col-span-2 lg:col-span-2  ">
